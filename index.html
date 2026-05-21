@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelvin Odhiambo — Data & Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #fbf4e8;
+    --bg2: #fff9f0;
+    --bg3: #f7e7bc;
+    --border: rgba(216, 184, 94, 0.22);
+    --border-accent: rgba(216, 184, 94, 0.16);
+    --text: #2a1f08;
+    --muted: #7d6b49;
+    --accent: #d8b85e;
+    --accent2: #f0d37f;
+    --accent3: #865c05;
+    --font-display: 'Georgia', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 3rem;
+    border-bottom: 1px solid rgba(216, 184, 94, 0.22);
+    background: rgba(255, 250, 237, 0.96);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    border-radius: 999px;
+    background: rgba(255, 250, 237, 0.92);
+    border: 1px solid rgba(216, 184, 94, 0.24);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  }
+  .nav-logo:hover,
+  .nav-logo:focus-visible {
+    background: rgba(216, 184, 94, 0.12);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 30px rgba(216, 184, 94, 0.14);
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    margin-left: 1.5rem;
+  }
+  .nav-cta .btn {
+    padding: 0.8rem 1.35rem;
+    font-size: 0.78rem;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 4rem; max-width: 1100px; margin: 0 auto; scroll-margin-top: 7rem; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    width: 100%;
+    align-items: center;
+  }
+
+  .hero-tag {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+  .hero-name .line2 { color: inherit; }
+
+  .hero-descriptor {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 3rem;
+    max-width: 560px;
+    line-height: 1.85;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .trust-strip {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .trust-item {
+    background: rgba(255, 250, 237, 0.9);
+    border: 1px solid rgba(216, 184, 94, 0.12);
+    padding: 1.25rem 1.35rem;
+    border-radius: 18px;
+  }
+  .trust-item span {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .trust-item p {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .hero-photo-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 32px;
+    border: 1px solid rgba(216, 184, 94, 0.18);
+    background: linear-gradient(180deg, rgba(255, 250, 237, 0.95), #ffffff);
+    box-shadow: 0 28px 70px rgba(28, 22, 10, 0.09);
+  }
+  .hero-photo-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(216, 184, 94, 0.15), transparent 35%), radial-gradient(circle at bottom left, rgba(248, 219, 118, 0.12), transparent 30%);
+    pointer-events: none;
+  }
+  .hero-photo {
+    width: 100%;
+    display: block;
+  }
+
+  .hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 1.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary { background: var(--accent); color: #fff; font-weight: 500; }
+  .btn-primary:hover { background: var(--accent3); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border-accent); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(120px, 1fr));
+    gap: 0;
+    border: 1px solid var(--border);
+    background: rgba(196, 154, 41, 0.06);
+    max-width: 560px;
+  }
+  .stat {
+    padding: 1.25rem 1.5rem;
+    border-right: 1px solid var(--border);
+    background: rgba(255, 250, 237, 0.75);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* BG noise overlay */
+  #hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+
+  /* accent circle */
+  .hero-circle {
+    position: absolute;
+    right: -100px; top: 50%;
+    transform: translateY(-50%);
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(196, 154, 41, 0.12);
+    z-index: 0;
+  }
+  .hero-circle::before {
+    content: '';
+    position: absolute; inset: 60px;
+    border-radius: 50%;
+    border: 1px solid rgba(196, 154, 41, 0.08);
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    line-height: 1.1;
+    color: var(--text);
+  }
+
+  /* ── ABOUT ── */
+  #about { border-top: 1px solid var(--border); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+  }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+
+  .identity-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 2rem;
+  }
+  .identity-card h3 {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
+  }
+  .id-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .id-row:last-child { border-bottom: none; }
+  .id-key { color: var(--muted); font-family: var(--font-mono); font-size: 0.78rem; }
+  .id-val { color: var(--text); font-weight: 500; text-align: right; }
+  .id-val.accent { color: var(--accent); }
+
+  /* ── EXPERIENCE ── */
+  #experience { border-top: 1px solid var(--border); }
+
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .job {
+    padding-left: 2.5rem;
+    padding-bottom: 3.5rem;
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .job:hover {
+    transform: translateX(2px);
+  }
+  .job:last-child { padding-bottom: 0; }
+  .job::before {
+    content: '';
+    position: absolute;
+    left: -4px; top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  .job-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .job-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+  }
+  .job-type {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 0.15rem 0.6rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .job-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.2rem;
+  }
+  .job-company {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .job-challenge {
+    background: var(--bg2);
+    border-left: 4px solid var(--accent3);
+    padding: 0.85rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .job-challenge strong { color: var(--accent3); font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
+
+  .job-bullets { list-style: none; }
+  .job-bullets li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .job-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent2);
+    font-size: 0.8rem;
+  }
+  .job-bullets li strong { color: var(--text); font-weight: 500; }
+
+  /* ── SKILLS ── */
+  #skills { border-top: 1px solid var(--border); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  .skill-block {
+    background: #fff;
+    padding: 1.75rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .skill-block:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 30px rgba(28, 22, 10, 0.08);
+  }
+  .skill-block-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    border: 1px solid var(--border-accent);
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { border-top: 1px solid var(--border); background: rgba(255, 248, 225, 0.65); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    box-shadow: 0 18px 45px rgba(28, 22, 10, 0.06);
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 28px 55px rgba(28, 22, 10, 0.14);
+  }
+  .project-image {
+    width: 100%;
+    max-height: 280px;
+    object-fit: contain;
+    background: var(--bg3);
+    display: block;
+  }
+  .project-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .project-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+  }
+  .project-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    line-height: 1.2;
+    margin-bottom: 0.35rem;
+  }
+  .project-desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    flex-grow: 1;
+  }
+  .project-links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .project-links a {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--accent3);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+  .project-links a:hover {
+    color: var(--accent);
+  }
+
+  /* ── SERVICES ── */
+  #services { border-top: 1px solid var(--border); background: rgba(255, 248, 225, 0.55); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  .service-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 52px rgba(28, 22, 10, 0.12);
+  }
+  .service-image {
+    width: 100%;
+    min-height: 240px;
+    object-fit: contain;
+    background: var(--bg3);
+    display: block;
+  }
+  .service-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    flex-grow: 1;
+  }
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    line-height: 1.2;
+    color: var(--text);
+  }
+  .service-desc {
+    color: var(--muted);
+    line-height: 1.75;
+    font-size: 0.95rem;
+  }
+
+  /* ── FEATURED CASE STUDY ── */
+  #case-study { border-top: 1px solid var(--border); }
+  .case-study-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2rem;
+    align-items: stretch;
+  }
+  .case-study-panel {
+    background: #fff;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 45px rgba(28, 22, 10, 0.06);
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .case-study-panel:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 60px rgba(28, 22, 10, 0.12);
+  }
+  .case-study-hero {
+    position: relative;
+    min-height: 320px;
+    overflow: hidden;
+  }
+  .case-study-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .case-study-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .case-study-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .case-study-pill {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    background: rgba(196, 154, 41, 0.08);
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .case-study-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.4vw, 2.6rem);
+    margin-bottom: 0.5rem;
+  }
+  .case-study-desc {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 1rem;
+  }
+  .case-study-list {
+    list-style: none;
+    display: grid;
+    gap: 0.85rem;
+    padding: 0;
+    margin: 0;
+  }
+  .case-study-list li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .case-study-list li::before {
+    content: '•';
+    color: var(--accent);
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+  .case-study-actions {
+    margin-top: auto;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .case-study-actions a {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: #fff;
+    background: var(--accent);
+    padding: 0.92rem 1.4rem;
+    border-radius: 999px;
+    transition: background 0.2s;
+  }
+  .case-study-actions a:hover {
+    background: #a07820;
+  }
+  #education { border-top: 1px solid var(--border); }
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .edu-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1.75rem;
+  }
+  .edu-card-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+  .edu-card-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+  }
+  .edu-card-sub {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .cert-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .cert-list li {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.9rem; color: var(--muted);
+  }
+  .cert-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── CONTACT ── */
+  #contact { border-top: 1px solid var(--border); text-align: center; }
+  #contact .section-label { justify-content: center; }
+  #contact .section-label::before { display: none; }
+  .contact-email {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--accent);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 1rem;
+    transition: color 0.2s;
+  }
+  .contact-email:hover { color: var(--accent); }
+  .contact-sub {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  footer p {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  footer span { color: var(--accent); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.25s; }
+  .delay-3 { animation-delay: 0.4s; }
+  .delay-4 { animation-delay: 0.55s; }
+  .delay-5 { animation-delay: 0.7s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 1rem 2rem; }
+    section { padding: 5rem 2rem; }
+    .hero-inner, section { padding: 0 2rem; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .section-title { font-size: clamp(1.9rem, 4vw, 2.6rem); }
+    .about-grid, .edu-grid, .case-study-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .hero-stats { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    nav { flex-wrap: wrap; row-gap: 0.75rem; justify-content: center; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .hero-inner, section { padding: 0 1.5rem; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding-top: 6rem; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-circle { display: none; }
+    .trust-strip { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .skill-block { padding: 1.5rem; }
+    .project-card { min-height: auto; }
+    .case-study-panel { border-radius: 20px; }
+    .case-study-actions { flex-direction: column; }
+    .case-study-actions a { width: 100%; justify-content: center; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 2rem 1.5rem; }
+  }
+
+  @media (max-width: 640px) {
+    .nav-links a { font-size: 0.75rem; }
+    .hero-name { font-size: clamp(2.8rem, 11vw, 4.5rem); }
+    .hero-tag { gap: 0.5rem; }
+    .hero-descriptor, .project-desc, .case-study-desc { font-size: 0.95rem; }
+    .projects-grid, .skills-grid { gap: 1rem; }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.12em; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://wa.me/254703920254?text=Hi%20Kelvin%2C%20I%27d%20like%20to%20connect" class="nav-logo" target="_blank" rel="noreferrer noopener" aria-label="Chat on WhatsApp">
+    <span>K<span>.</span>O</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn btn-primary nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-circle"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="hero-tag fade-up delay-1">Nairobi, Kenya &nbsp;·&nbsp; Available for opportunities</p>
+      <h1 class="hero-name">
+        <span class="line1 fade-up delay-2">Kelvin</span><br>
+        <span class="line2 fade-up delay-3">Odhiambo</span>
+      </h1>
+      <p class="hero-descriptor fade-up delay-4">
+        I build data-driven operations, AI-powered automation systems, and virtual assistant workflows that keep businesses efficient, responsive, and future-ready.
+      </p>
+      <div class="hero-cta fade-up delay-5">
+        <a href="#experience" class="btn btn-primary">View My Work ↓</a>
+        <a href="mailto:Kelvinvosky2@gmail.com" class="btn btn-outline">Get In Touch</a>
+      </div>
+      <div class="trust-strip fade-up delay-5">
+        <div class="trust-item">
+          <span>Trusted by data teams</span>
+          <p>Clients and collaborators value my ability to turn manual workflows into polished automation systems.</p>
+        </div>
+        <div class="trust-item">
+          <span>Results-driven design</span>
+          <p>Projects combine intelligent scheduling, reporting, and virtual assistance to save time and reduce overhead.</p>
+        </div>
+        <div class="trust-item">
+          <span>Operations-ready delivery</span>
+          <p>I build work that works for the team and the business, from dashboards to Google Sheets automation.</p>
+        </div>
+      </div>
+      <div class="hero-stats fade-up delay-5">
+        <div class="stat">
+          <span class="stat-num">3+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Companies</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">30%</span>
+          <span class="stat-label">Reporting Time Saved</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-media fade-up delay-5">
+      <div class="hero-photo-card">
+        <img class="hero-photo" src="profile.jpg" alt="Kelvin Odhiambo portrait">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">Who I Am</p>
+  <h2 class="section-title">The person behind<br>the dashboards</h2>
+  <div class="about-grid">
+    <div class="about-text">
+        <p>
+        I'm Kelvin — a data and operations professional who has built his career at the intersection of <strong>logistics, analytics, business intelligence, and automation</strong>. I don't just sit with data; I design workflows that help teams move faster and work smarter.
+      </p>
+      <p>
+        I combine hands-on operations experience with coding, process automation, and virtual assistant services. That means I can build dashboards, automate reporting, and support growth with AI-enhanced systems.
+      </p>
+      <p>
+        My work spans <strong>e-commerce fulfilment, content analytics, retail, technical writing, and virtual assistance</strong>. That mix lets me translate complex data into practical actions and polished deliverables.
+      </p>
+      <p>
+        I'm open to roles in <strong>data analytics, operations, automation, or virtual assistant leadership</strong>, especially where AI and efficiency matter.
+      </p>
+    </div>
+    <div>
+      <div class="identity-card">
+        <h3>Profile</h3>
+        <div class="id-row">
+          <span class="id-key">full_name</span>
+          <span class="id-val">Kelvin Odhiambo</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">location</span>
+          <span class="id-val">Nairobi, Kenya</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">role</span>
+          <span class="id-val accent">Data & Ops Analyst</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">experience</span>
+          <span class="id-val">3+ years</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">education</span>
+          <span class="id-val">BSc Applied Mathematics</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">email</span>
+          <span class="id-val accent">Kelvinvosky2@gmail.com</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">phone</span>
+          <span class="id-val">+254 703 920 254</span>
+        </div>
+        <div class="id-row">
+          <span class="id-key">status</span>
+          <span class="id-val accent">Open to opportunities</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Career Journey</p>
+  <h2 class="section-title">Where I've been,<br>what I've built</h2>
+
+  <div class="timeline">
+
+    <!-- Klarecon -->
+    <div class="job">
+      <div class="job-meta">
+        <span class="job-date">Apr 2025 — Jan 2026</span>
+        <span class="job-type">Remote</span>
+      </div>
+      <p class="job-title">Data & Operations Analyst</p>
+      <p class="job-company">Klarecon</p>
+      <div class="job-challenge">
+        <strong>The Problem</strong>
+        Management lacked consolidated visibility into content performance and operational KPIs across multiple platforms — manual reporting was a bottleneck and decisions were slow.
+      </div>
+      <ul class="job-bullets">
+        <li>Built and maintained <strong>Power BI dashboards</strong> consolidating KPIs across business functions — cut manual reporting time by ~30% and gave leadership real-time visibility.</li>
+        <li>Extracted, cleaned and transformed multi-source operational data using <strong>SQL and Google Sheets</strong>, ensuring accuracy for weekly and monthly management reports.</li>
+        <li>Analyzed content performance across <strong>MSN platforms</strong> — traffic metrics, month-on-month trends — with insights directly driving a revision of internal publishing policies.</li>
+        <li>Maintained <strong>data validation and standardization protocols</strong> across all sources, ensuring audit-readiness and reporting consistency.</li>
+      </ul>
+    </div>
+
+    <!-- CoDirect -->
+    <div class="job">
+      <div class="job-meta">
+        <span class="job-date">Jan 2024 — Mar 2025</span>
+        <span class="job-type">Full-Time</span>
+      </div>
+      <p class="job-title">Operations Manager — Dispatch & Fulfilment</p>
+      <p class="job-company">CoDirect Fulfilment Company</p>
+      <div class="job-challenge">
+        <strong>The Problem</strong>
+        A rapidly growing fulfilment operation had no structured system for tracking rider dispatch, truck movements, or order status — causing delivery delays, poor route visibility, and reactive management.
+      </div>
+      <ul class="job-bullets">
+        <li><strong>Owned end-to-end dispatch coordination</strong> for a fleet of riders and trucks — scheduled daily assignments, monitored real-time movements, and ensured timely order fulfilment.</li>
+        <li>Implemented <strong>live tracking</strong> of trucks and riders across all active routes, creating a centralized delivery status view that reduced missed SLAs.</li>
+        <li>Built <strong>KPI frameworks in Excel and Google Sheets</strong> to monitor delivery performance, route efficiency, and order turnaround — enabling data-backed route adjustments.</li>
+        <li>Identified and flagged <strong>operational bottlenecks</strong> — route congestion, rider capacity gaps, warehouse handoff delays — leading to targeted process improvements.</li>
+        <li>Prepared <strong>weekly consolidated performance reports</strong> for senior management, combining dispatch data, delivery outcomes, and operational KPIs into clear, actionable snapshots.</li>
+      </ul>
+    </div>
+
+    <!-- Bata -->
+    <div class="job">
+      <div class="job-meta">
+        <span class="job-date">Sep 2022 — Dec 2023</span>
+        <span class="job-type">Part-Time</span>
+      </div>
+      <p class="job-title">Sales Associate</p>
+      <p class="job-company">Bata Retail Shop</p>
+      <div class="job-challenge">
+        <strong>The Problem</strong>
+        Branch-level performance was tracked manually with no structured view of product-level KPIs — making stock replenishment and purchasing decisions largely reactive.
+      </div>
+      <ul class="job-bullets">
+        <li>Analyzed <strong>sales performance, conversion metrics, and product-level data</strong> to track KPIs against monthly and quarterly targets.</li>
+        <li>Prepared branch-level reports identifying <strong>high-performing products and underperforming categories</strong> — enabling data-backed merchandising decisions.</li>
+        <li>Tracked product stock levels and flagged reorder needs proactively, helping <strong>reduce stockouts on fast-moving lines</strong>.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Selected Work</p>
+  <h2 class="section-title">Projects & Impact</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <img class="project-image" src="https://images.pexels.com/photos/34086221/pexels-photo-34086221.jpeg" alt="Friends Call project preview">
+      <div class="project-content">
+        <span class="project-label">Live product</span>
+        <h3 class="project-title">Friends Call</h3>
+        <p class="project-desc">A customer-facing web experience built to showcase product flow, user navigation, and service-first design.</p>
+        <div class="project-links">
+          <a href="https://friends-call.vercel.app/" target="_blank">Visit Live</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-image" src="https://images.pexels.com/photos/7108759/pexels-photo-7108759.jpeg" alt="Veea project preview">
+      <div class="project-content">
+        <span class="project-label">Web build</span>
+        <h3 class="project-title">Veea</h3>
+        <p class="project-desc">A polished portfolio site built with modern UX and fast deployment, showing product direction and digital experience design.</p>
+        <div class="project-links">
+          <a href="https://veea.vercel.app/" target="_blank">Visit Live</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-image" src="https://blog.genially.com/wp-content/uploads/2023/06/student-portfolio-header.png" alt="Next Level DW web project preview">
+      <div class="project-content">
+        <span class="project-label">Business site</span>
+        <h3 class="project-title">Next Level DW</h3>
+        <p class="project-desc">Website design and product upload support for a high-performance retail distribution brand, improving how customers discover solutions.</p>
+        <div class="project-links">
+          <a href="https://www.nextleveldw.com/" target="_blank">Visit Live</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card fade-up delay-4">
+      <img class="project-image" src="https://images.pexels.com/photos/577210/pexels-photo-577210.jpeg" alt="Google Sheets automation project">
+      <div class="project-content">
+        <span class="project-label">Automation</span>
+        <h3 class="project-title">Google Sheets Scheduling</h3>
+        <p class="project-desc">Automated scheduling and task workflows using Google Sheets and Apps Script to reduce manual updates and streamline calendar planning.</p>
+        <div class="project-links">
+          <a href="https://docs.google.com/spreadsheets/d/1s8R5To3idiTE_RoWR6BwI91UGGsr7t918lmScYm3VI0/edit?usp=sharing" target="_blank">View Project</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card fade-up delay-5">
+      <img class="project-image" src="https://images.pexels.com/photos/34086221/pexels-photo-34086221.jpeg" alt="Technical writing showcase">
+      <div class="project-content">
+        <span class="project-label">Content & writing</span>
+        <h3 class="project-title">OpenForum Technical Writing</h3>
+        <p class="project-desc">Technical writing and editorial content that communicates ideas clearly, professionally, and with an operations mindset.</p>
+        <div class="project-links">
+          <a href="https://open.forem.com/kelvin_vosky_dc39384ebad2" target="_blank">View Writing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED CASE STUDY -->
+<section id="case-study">
+  <p class="section-label">Featured Case Study</p>
+  <h2 class="section-title">Next Level DW — AI, automation, and product growth</h2>
+  <div class="case-study-grid">
+    <div class="case-study-panel">
+      <div class="case-study-hero">
+        <img src="https://blog.genially.com/wp-content/uploads/2023/06/student-portfolio-header.png" alt="Next Level DW case study image">
+      </div>
+      <div class="case-study-content">
+        <span class="case-study-pill">Retail operations</span>
+        <p class="case-study-desc">Delivered product upload support, site optimization, and data-backed process improvements for Next Level DW. The work combined technical execution, customer-facing design, and operational efficiency to help the business scale.</p>
+        <ul class="case-study-list">
+          <li>Streamlined product upload workflows and improved catalog accuracy for faster listings.</li>
+          <li>Automated reporting and content checks to reduce manual update time by over 40%.</li>
+          <li>Aligned product presentation with user needs so site visitors can discover solutions more clearly.</li>
+        </ul>
+        <div class="case-study-actions">
+          <a href="https://www.nextleveldw.com/" target="_blank">View Live Site</a>
+          <a href="mailto:Kelvinvosky2@gmail.com">Discuss a similar project</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="section-label">Why it matters</p>
+      <div class="project-content" style="background: #fff8e5; border: 1px solid var(--border); border-radius: 20px; padding: 1.75rem;">
+        <p class="project-desc">This project is a strong example of how I blend operations, automation, and digital product support. It shows how I take a business need and turn it into a measurable, workflow-driven outcome.</p>
+        <div class="project-links" style="margin-top: 1.5rem; gap: 1rem;">
+          <a href="https://friends-call.vercel.app/" target="_blank">Other work</a>
+          <a href="https://open.forem.com/kelvin_vosky_dc39384ebad2" target="_blank">Writing samples</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-label">What I Offer</p>
+  <h2 class="section-title">World-class support for modern work</h2>
+  <div class="services-grid">
+    <div class="service-card fade-up delay-1">
+      <img class="service-image" src="https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg" alt="Automation workflow image">
+      <div class="service-content">
+        <p class="service-title">AI & Automation Systems</p>
+        <p class="service-desc">Designing automated workflows, intelligent scheduling, and App Script solutions that keep processes moving with less manual effort.</p>
+      </div>
+    </div>
+    <div class="service-card fade-up delay-2">
+      <img class="service-image" src="https://images.pexels.com/photos/17485353/pexels-photo-17485353.jpeg" alt="Virtual assistant workflow image">
+      <div class="service-content">
+        <p class="service-title">Virtual Assistant Services</p>
+        <p class="service-desc">Providing executive support, calendar coordination, content tracking, and task orchestration to keep teams aligned and productive.</p>
+      </div>
+    </div>
+    <div class="service-card fade-up delay-3">
+      <img class="service-image" src="https://images.pexels.com/photos/577210/pexels-photo-577210.jpeg" alt="Data and reporting image">
+      <div class="service-content">
+        <p class="service-title">Data Reporting & Dashboards</p>
+        <p class="service-desc">Building clear analytics dashboards and reports that turn raw numbers into simple decisions and measurable improvements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Toolkit</p>
+  <h2 class="section-title">How I get<br>the work done</h2>
+
+  <div class="skills-grid">
+    <div class="skill-block">
+      <p class="skill-block-title">Analytics & BI</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Excel (Advanced)</span>
+        <span class="skill-tag">Google Sheets</span>
+        <span class="skill-tag">KPI Frameworks</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-block-title">Operations</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Dispatch Coordination</span>
+        <span class="skill-tag">Fleet Tracking</span>
+        <span class="skill-tag">Route Optimization</span>
+        <span class="skill-tag">Warehouse Ops</span>
+        <span class="skill-tag">SLA Management</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-block-title">AI & Automation</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Workflow Automation</span>
+        <span class="skill-tag">AI Prompting</span>
+        <span class="skill-tag">Bot Support</span>
+        <span class="skill-tag">Task Orchestration</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-block-title">Virtual Assistance</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Client Support</span>
+        <span class="skill-tag">Calendar Management</span>
+        <span class="skill-tag">Email Workflows</span>
+        <span class="skill-tag">Project Coordination</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-block-title">Remote Readiness</p>
+      <div class="skill-tags">
+        <span class="skill-tag">ClickUp</span>
+        <span class="skill-tag">Monday.com</span>
+        <span class="skill-tag">Zoho Workspace</span>
+        <span class="skill-tag">Zoom</span>
+        <span class="skill-tag">Microsoft Teams</span>
+        <span class="skill-tag">Loom</span>
+        <span class="skill-tag">CMS & Content Systems</span>
+        <span class="skill-tag">Autonomous Workflows</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-block-title">Reporting</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Dashboard Design</span>
+        <span class="skill-tag">Management Reports</span>
+        <span class="skill-tag">Performance Analysis</span>
+        <span class="skill-tag">Stakeholder Comms</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label">Foundation</p>
+  <h2 class="section-title">Education &<br>certifications</h2>
+
+  <div class="edu-grid">
+    <div class="edu-card">
+      <p class="edu-card-label">Degree</p>
+      <p class="edu-card-title">Bachelor of Science<br>in Applied Mathematics</p>
+      <p class="edu-card-sub">Moi University, Kenya</p>
+    </div>
+    <div class="edu-card">
+      <p class="edu-card-label">Certifications & Professional Development</p>
+      <ul class="cert-list">
+        <li><span class="cert-dot"></span>ALX Data Analytics Program</li>
+        <li><span class="cert-dot"></span>ALX Professional Foundations</li>
+        <li><span class="cert-dot"></span>LuxDev Technical Writing</li>
+        <li><span class="cert-dot"></span>ALX Virtual Assistance Program</li>
+        <li><span class="cert-dot"></span>Member, DAMA Kenya</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Let's Talk</p>
+  <h2 class="section-title">Open to new roles<br>and conversations</h2>
+  <a href="mailto:Kelvinvosky2@gmail.com" class="contact-email">Kelvinvosky2@gmail.com</a>
+  <p class="contact-sub">Based in Nairobi · Available for remote or local opportunities</p>
+  <div class="contact-links">
+    <a href="tel:+254703920254" class="btn btn-outline">+254 703 920 254</a>
+    <a href="https://linkedin.com/in/kelvin-odhiambo-995b44144" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+    <a href="mailto:Kelvinvosky2@gmail.com" class="btn btn-primary">Send Email →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Kelvin Odhiambo</p>
+  <p>Built with purpose · Nairobi, Kenya · <span>KO</span></p>
+</footer>
+
+</body>
+</html>
