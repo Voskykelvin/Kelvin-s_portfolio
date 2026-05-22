@@ -41,28 +41,29 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     border-bottom: 1px solid rgba(216, 184, 94, 0.22);
     background: rgba(255, 250, 237, 0.96);
     backdrop-filter: blur(12px);
+    gap: 1rem;
   }
   .nav-logo {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 3rem;
-    height: 3rem;
     min-width: 3rem;
+    height: 3rem;
     border-radius: 999px;
     background: rgba(255, 250, 237, 0.92);
     border: 1px solid rgba(216, 184, 94, 0.24);
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 1.05rem;
+    font-size: 1rem;
     letter-spacing: -0.03em;
     color: var(--text);
     text-decoration: none;
     transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    padding: 0 0.85rem;
   }
   .nav-logo:hover,
   .nav-logo:focus-visible {
@@ -71,23 +72,53 @@
     box-shadow: 0 12px 30px rgba(216, 184, 94, 0.14);
   }
   .nav-logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+  .nav-links {
+    display: flex; gap: 1.25rem; list-style: none; align-items: center;
+    flex-wrap: wrap;
+  }
   .nav-links a {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--text);
     text-decoration: none;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     transition: color 0.2s ease, border-color 0.2s ease;
+    padding: 0.75rem 0.5rem;
   }
   .nav-links a:hover { color: var(--accent); }
   .nav-cta {
-    margin-left: 1.5rem;
+    margin-left: auto;
   }
   .nav-cta .btn {
-    padding: 0.8rem 1.35rem;
-    font-size: 0.78rem;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.85rem;
+  }
+  .whatsapp-float {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.5rem;
+    z-index: 120;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.95rem 1.1rem;
+    background: #25d366;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 14px 30px rgba(37, 211, 102, 0.22);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .whatsapp-float:hover,
+  .whatsapp-float:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 34px rgba(37, 211, 102, 0.24);
+    background: #1ebe5b;
   }
 
   /* ── SECTIONS ── */
@@ -139,11 +170,14 @@
   .hero-name {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    line-height: 0.95;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 0.88;
     letter-spacing: -0.03em;
     margin-bottom: 1.5rem;
     color: var(--text);
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.15rem;
   }
   .hero-name .line2 { color: inherit; }
 
@@ -830,7 +864,9 @@
 
   @media (max-width: 768px) {
     nav { flex-wrap: wrap; row-gap: 0.75rem; justify-content: center; }
-    .nav-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 0.85rem; justify-content: center; }
+    .nav-cta { width: 100%; display: flex; justify-content: center; }
+    .nav-cta .btn { width: auto; }
     .hero-inner, section { padding: 0 1.5rem; }
     section { padding: 4rem 1.5rem; }
     #hero { padding-top: 6rem; }
@@ -861,7 +897,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="https://wa.me/254703920254?text=Hi%20Kelvin%2C%20I%27d%20like%20to%20connect" class="nav-logo" target="_blank" rel="noreferrer noopener" aria-label="Chat on WhatsApp">
+  <a href="#hero" class="nav-logo" aria-label="Go to top">
     <span>K<span>.</span>O</span>
   </a>
   <ul class="nav-links">
@@ -1068,7 +1104,7 @@
       <div class="project-content">
         <span class="project-label">Live product</span>
         <h3 class="project-title">Friends Call</h3>
-        <p class="project-desc">A customer-facing web experience built to showcase product flow, user navigation, and service-first design.</p>
+        <p class="project-desc">A customer-facing web experience I built to showcase product flow, user navigation, and service-first design principles.</p>
         <div class="project-links">
           <a href="https://friends-call.vercel.app/" target="_blank">Visit Live</a>
         </div>
@@ -1079,7 +1115,7 @@
       <div class="project-content">
         <span class="project-label">Web build</span>
         <h3 class="project-title">Veea</h3>
-        <p class="project-desc">A polished portfolio site built with modern UX and fast deployment, showing product direction and digital experience design.</p>
+        <p class="project-desc">A polished portfolio site I built with modern UX and fast deployment, demonstrating digital experience design and product direction.</p>
         <div class="project-links">
           <a href="https://veea.vercel.app/" target="_blank">Visit Live</a>
         </div>
@@ -1090,7 +1126,7 @@
       <div class="project-content">
         <span class="project-label">Business site</span>
         <h3 class="project-title">Next Level DW</h3>
-        <p class="project-desc">Website design and product upload support for a high-performance retail distribution brand, improving how customers discover solutions.</p>
+        <p class="project-desc">Collaborative frontend design and product upload support for a high-performance retail distribution brand, improving how customers discover solutions.</p>
         <div class="project-links">
           <a href="https://www.nextleveldw.com/" target="_blank">Visit Live</a>
         </div>
@@ -1298,5 +1334,8 @@
   <p>Built with purpose · Nairobi, Kenya · <span>KO</span></p>
 </footer>
 
+<a href="https://wa.me/254703920254?text=Hi%20Kelvin%2C%20I%27d%20like%20to%20connect" class="whatsapp-float" target="_blank" rel="noreferrer noopener" aria-label="Chat on WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display: inline; margin-right: 0.35rem;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.768.967-.94 1.165-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a6.963 6.963 0 00-6.936 6.937c0 1.527.382 3.032 1.109 4.363l-1.18 4.32 4.412-1.157c1.29.72 2.757 1.1 4.296 1.1h.004A6.966 6.966 0 0012 5.979a6.964 6.964 0 00-.051-13.401z"/></svg> WhatsApp</a>
+
 </body>
 </html>
+
