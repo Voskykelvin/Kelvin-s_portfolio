@@ -1,4 +1,4 @@
-/* -------------------------------------------------------------------------- */
+﻿/* -------------------------------------------------------------------------- */
 /* Kelvin Odhiambo Portfolio - Master Stylesheet                              */
 /* -------------------------------------------------------------------------- */
 
@@ -9,24 +9,29 @@
 }
 
 :root {
-  --bg-dark: #0d0f14;
-  --bg-card: rgba(22, 27, 38, 0.75);
-  --bg-card-hover: rgba(30, 37, 52, 0.85);
-  --border-light: rgba(216, 184, 94, 0.18);
-  --border-accent: rgba(216, 184, 94, 0.35);
-  --text-main: #f3edd9;
-  --text-muted: #9e9684;
-  --accent-gold: #d8b85e;
-  --accent-gold-light: #f4dc96;
-  --accent-gold-dark: #a88832;
-  --accent-glow: rgba(216, 184, 94, 0.15);
+  --bg: #FDFBD4;
+  --bg2: #FFFDF2;
+  --bg3: #F7E7BC;
+  --bg-card: rgba(255, 255, 255, 0.75);
+  --bg-card-hover: rgba(255, 255, 255, 0.85);
+  --border-light: rgba(116, 184, 22, 0.14);
+  --border-accent: rgba(116, 184, 22, 0.24);
+  --text-main: #2A1F08;
+  --text-muted: #5E532F;
+  --accent: #74B816;
+  --accent-lime: #74B816;
+  --accent-lime-hover: #629E10;
+  --accent-lime-dark: #52760C;
+  --accent3: #52760C;
+  --accent-glow: rgba(116, 184, 22, 0.14);
+  --accent-lime-glow: rgba(116, 184, 22, 0.14);
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
-  --font-display: 'Inter', sans-serif;
-  --shadow-card: 0 16px 40px rgba(0, 0, 0, 0.35);
-  --shadow-hover: 0 24px 50px rgba(216, 184, 94, 0.12);
+  --font-display: 'Georgia', serif;
+  --shadow-card: 0 18px 42px rgba(42, 31, 8, 0.09);
+  --shadow-hover: 0 20px 50px rgba(42, 31, 8, 0.12);
   --radius-lg: 20px;
-  --radius-md: 12px;
+  --radius-md: 14px;
   --radius-sm: 6px;
   --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -37,10 +42,10 @@ html {
 }
 
 body {
-  background-color: var(--bg-dark);
+  background: var(--bg);
   background-image: 
-    radial-gradient(circle at 15% 15%, rgba(216, 184, 94, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 85% 85%, rgba(168, 136, 50, 0.06) 0%, transparent 45%);
+    radial-gradient(circle at 18% 18%, rgba(116, 184, 22, 0.08) 0%, transparent 35%),
+    radial-gradient(circle at 82% 82%, rgba(133, 214, 43, 0.06) 0%, transparent 42%);
   background-attachment: fixed;
   color: var(--text-main);
   font-family: var(--font-body);
@@ -87,8 +92,7 @@ header.scrolled {
 }
 
 .nav-logo span {
-  color: var(--accent-gold);
-}
+    color: var(--accent);
 
 .nav-links {
   display: flex;
@@ -111,7 +115,7 @@ header.scrolled {
 
 .nav-links a:hover,
 .nav-links a.active {
-  color: var(--accent-gold);
+  color: var(--accent);
 }
 
 .nav-links a.active::after {
@@ -121,7 +125,7 @@ header.scrolled {
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--accent-gold);
+  background: var(--accent);
   border-radius: 2px;
 }
 
@@ -154,15 +158,15 @@ header.scrolled {
 }
 
 .btn-primary {
-  background: var(--accent-gold);
+  background: var(--accent);
   color: #0d0f14;
   font-weight: 600;
 }
 
 .btn-primary:hover {
-  background: var(--accent-gold-light);
+  background: var(--accent-lime-hover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(216, 184, 94, 0.25);
+  box-shadow: 0 8px 24px rgba(116, 184, 22, 0.25);
 }
 
 .btn-outline {
@@ -172,8 +176,8 @@ header.scrolled {
 }
 
 .btn-outline:hover {
-  border-color: var(--accent-gold);
-  color: var(--accent-gold);
+  border-color: var(--accent);
+  color: var(--accent);
   background: var(--accent-glow);
   transform: translateY(-2px);
 }
@@ -191,7 +195,7 @@ section {
 .section-label {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--accent-gold);
+  color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 0.15em;
   margin-bottom: 0.75rem;
@@ -204,7 +208,7 @@ section {
   content: '';
   width: 24px;
   height: 1px;
-  background: var(--accent-gold);
+  background: var(--accent);
 }
 
 .section-title {
@@ -241,7 +245,7 @@ section {
 .hero-tag {
   font-family: var(--font-mono);
   font-size: 0.82rem;
-  color: var(--accent-gold);
+  color: var(--accent);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
@@ -258,7 +262,7 @@ section {
 }
 
 .hero-name .accent-text {
-  color: var(--accent-gold);
+  color: var(--accent);
 }
 
 .hero-descriptor {
@@ -295,7 +299,7 @@ section {
   font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 800;
-  color: var(--accent-gold);
+  color: var(--accent);
   line-height: 1;
   margin-bottom: 0.35rem;
 }
@@ -381,7 +385,7 @@ section {
 .identity-card h3 {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: var(--accent-gold);
+  color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin-bottom: 1.5rem;
@@ -414,7 +418,7 @@ section {
 }
 
 .id-val.accent {
-  color: var(--accent-gold);
+  color: var(--accent);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -455,8 +459,8 @@ section {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--accent-gold);
-  box-shadow: 0 0 12px var(--accent-gold);
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
 }
 
 .job-content {
@@ -492,7 +496,7 @@ section {
 .job-company {
   font-family: var(--font-mono);
   font-size: 0.9rem;
-  color: var(--accent-gold);
+  color: var(--accent);
 }
 
 .job-date {
@@ -505,8 +509,8 @@ section {
 }
 
 .job-problem {
-  background: rgba(216, 184, 94, 0.06);
-  border-left: 3px solid var(--accent-gold);
+  background: rgba(116, 184, 22, 0.06);
+  border-left: 3px solid var(--accent);
   padding: 1rem;
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   margin-bottom: 1.25rem;
@@ -534,7 +538,7 @@ section {
   position: absolute;
   left: 0;
   font-family: var(--font-mono);
-  color: var(--accent-gold);
+  color: var(--accent);
   font-weight: 700;
 }
 
@@ -574,9 +578,9 @@ section {
 
 .filter-btn:hover,
 .filter-btn.active {
-  background: var(--accent-gold);
+  background: var(--accent);
   color: #0d0f14;
-  border-color: var(--accent-gold);
+  border-color: var(--accent);
   font-weight: 600;
 }
 
@@ -632,7 +636,7 @@ section {
 .project-tag {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: var(--accent-gold);
+  color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin-bottom: 0.5rem;
@@ -662,7 +666,7 @@ section {
 .project-link {
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  color: var(--accent-gold);
+  color: var(--accent);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -674,7 +678,7 @@ section {
 }
 
 .project-link:hover {
-  color: var(--accent-gold-light);
+  color: var(--accent-lime-hover);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -701,8 +705,8 @@ section {
 .case-study-pill {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--accent-gold);
-  background: rgba(216, 184, 94, 0.1);
+  color: var(--accent);
+  background: rgba(116, 184, 22, 0.1);
   padding: 0.4rem 0.9rem;
   border-radius: 20px;
   text-transform: uppercase;
@@ -746,7 +750,7 @@ section {
   position: absolute;
   left: 0;
   font-family: var(--font-mono);
-  color: var(--accent-gold);
+  color: var(--accent);
   font-weight: 700;
 }
 
@@ -780,7 +784,7 @@ section {
 .skill-cat-title {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: var(--accent-gold);
+  color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1.25rem;
@@ -816,7 +820,7 @@ section {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 5vw, 3.2rem);
   font-weight: 800;
-  color: var(--accent-gold);
+  color: var(--accent);
   text-decoration: none;
   display: inline-block;
   margin-bottom: 1.25rem;
@@ -824,7 +828,7 @@ section {
 }
 
 .contact-email:hover {
-  color: var(--accent-gold-light);
+  color: var(--accent-lime-hover);
   transform: scale(1.02);
 }
 
@@ -856,7 +860,7 @@ footer {
 }
 
 footer span {
-  color: var(--accent-gold);
+  color: var(--accent);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -938,3 +942,5 @@ footer span {
     text-align: center;
   }
 }
+
+
