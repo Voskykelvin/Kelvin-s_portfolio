@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=5">
 <meta name="description" content="I build data-driven operations, AI-powered automation systems, and virtual assistant workflows that keep businesses efficient, responsive, and future-ready.">
 <meta property="og:title" content="Kelvin Odhiambo — Data & Operations">
 <meta property="og:description" content="I build data-driven operations, AI-powered automation systems, and virtual assistant workflows that keep businesses efficient, responsive, and future-ready.">
@@ -23,9 +23,10 @@
 <!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo" aria-label="Go to top">
-    <span>K<span>.</span>O</span>
+    <span>KO</span>
   </a>
-  <ul class="nav-links">
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="nav-links" aria-expanded="false">☰</button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -43,7 +44,7 @@
     <div class="hero-copy">
       <p class="hero-tag fade-up delay-1">Nairobi, Kenya &nbsp;·&nbsp; Available for opportunities</p>
       <h1 class="hero-name">
-        <span class="line1 fade-up delay-2">Kelvin</span><br>
+        <span class="line1 fade-up delay-2">Kelvin</span>
         <span class="line2 fade-up delay-3">Odhiambo</span>
       </h1>
       <p class="hero-descriptor fade-up delay-4">
@@ -83,8 +84,8 @@
       </div>
     </div>
     <div class="hero-media fade-up delay-5">
-      <div class="hero-photo-card">
-        <img class="hero-photo" src="profile.jpg" alt="Kelvin Odhiambo portrait">
+        <div class="hero-photo-card">
+        <img class="hero-photo" src="profile.jpg" alt="Kelvin Odhiambo portrait" width="853" height="853" loading="eager">
       </div>
     </div>
   </div>
@@ -122,7 +123,7 @@
         </div>
         <div class="id-row">
           <span class="id-key">role</span>
-          <span class="id-val accent">Data & Ops Analyst</span>
+          <span class="id-val accent">Remote Associate & Operations</span>
         </div>
         <div class="id-row">
           <span class="id-key">experience</span>
@@ -159,20 +160,21 @@
     <!-- Klarecon -->
     <div class="job">
       <div class="job-meta">
-        <span class="job-date">Apr 2025 — Jan 2026</span>
+        <span class="job-date">Apr 2025 — Present</span>
         <span class="job-type">Remote</span>
       </div>
-      <p class="job-title">Data & Operations Analyst</p>
-      <p class="job-company">Klarecon</p>
+      <h3 class="job-title">Remote Associate</h3>
+      <p class="job-company">Klarecon · Israel</p>
       <div class="job-challenge">
-        <strong>The Problem</strong>
-        Management lacked consolidated visibility into content performance and operational KPIs across multiple platforms — manual reporting was a bottleneck and decisions were slow.
+        <strong>The Problem:</strong>
+        Publishers syndicating high-volume digital content to MSN faced bottlenecks in asset production, copyright compliance, and formatting speed while adhering to strict algorithmic and editorial quality thresholds.
       </div>
       <ul class="job-bullets">
-        <li>Built and maintained <strong>Power BI dashboards</strong> consolidating KPIs across business functions — cut manual reporting time by ~30% and gave leadership real-time visibility.</li>
-        <li>Extracted, cleaned and transformed multi-source operational data using <strong>SQL and Google Sheets</strong>, ensuring accuracy for weekly and monthly management reports.</li>
-        <li>Analyzed content performance across <strong>MSN platforms</strong> — traffic metrics, month-on-month trends — with insights directly driving a revision of internal publishing policies.</li>
-        <li>Maintained <strong>data validation and standardization protocols</strong> across all sources, ensuring audit-readiness and reporting consistency.</li>
+        <li><strong>MSN Content Publishing:</strong> Uploaded, formatted, and staged high-volume articles and media packages for MSN content publishing, ensuring strict adherence to editorial policies and quality standards.</li>
+        <li><strong>Image Sourcing & Copyright Compliance:</strong> Sourced high-resolution editorial imagery from approved repositories and media partners, verifying licensing rights and copyright standards before publication.</li>
+        <li><strong>Image & Video Editing:</strong> Edited and optimized images and videos (cropping, color grading, resolution scaling, thumbnail selection) to elevate visual storytelling and drive reader engagement.</li>
+        <li><strong>Content & Traffic Analytics:</strong> Analyzed content performance metrics, traffic trends, and reader retention on MSN platforms to identify top-performing verticals and optimize future publishing workflows.</li>
+        <li><strong>Workflow Quality Assurance:</strong> Maintained meticulous quality control checks across all publishing pipelines, eliminating metadata errors and ensuring consistent audit-ready distribution.</li>
       </ul>
     </div>
 
@@ -182,10 +184,10 @@
         <span class="job-date">Jan 2024 — Mar 2025</span>
         <span class="job-type">Full-Time</span>
       </div>
-      <p class="job-title">Operations Manager — Dispatch & Fulfilment</p>
+      <h3 class="job-title">Operations Manager — Dispatch & Fulfilment</h3>
       <p class="job-company">CoDirect Fulfilment Company</p>
       <div class="job-challenge">
-        <strong>The Problem</strong>
+        <strong>The Problem:</strong>
         A rapidly growing fulfilment operation had no structured system for tracking rider dispatch, truck movements, or order status — causing delivery delays, poor route visibility, and reactive management.
       </div>
       <ul class="job-bullets">
@@ -203,10 +205,10 @@
         <span class="job-date">Sep 2022 — Dec 2023</span>
         <span class="job-type">Part-Time</span>
       </div>
-      <p class="job-title">Sales Associate</p>
+      <h3 class="job-title">Sales Associate</h3>
       <p class="job-company">Bata Retail Shop</p>
       <div class="job-challenge">
-        <strong>The Problem</strong>
+        <strong>The Problem:</strong>
         Branch-level performance was tracked manually with no structured view of product-level KPIs — making stock replenishment and purchasing decisions largely reactive.
       </div>
       <ul class="job-bullets">
@@ -225,57 +227,87 @@
   <h2 class="section-title">Projects & Impact</h2>
   <div class="projects-grid">
     <div class="project-card">
-      <img class="project-image" src="https://images.pexels.com/photos/34086221/pexels-photo-34086221.jpeg" alt="Friends Call project preview">
+      <picture>
+        <source type="image/webp" srcset="assets/images/resized/itruck-platform.webp">
+        <img class="project-image" src="assets/images/resized/itruck-platform.jpg" alt="iTruck Africa freight and logistics platform preview" width="1376" height="768" loading="lazy" decoding="async">
+      </picture>
+      <div class="project-content">
+        <span class="project-label">Logistics Platform · Full-Stack</span>
+        <h3 class="project-title">iTruck Africa</h3>
+        <p class="project-desc">A full-stack logistics and freight management platform built for African supply chains — featuring live GPS fleet tracking, dispatch workflows, driver management, and route optimization.</p>
+        <div class="project-links">
+          <a href="https://itruck.onrender.com/" target="_blank" rel="noopener noreferrer">Visit Live ↗</a>
+          <a href="https://github.com/Voskykelvin/iTruck" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <picture>
+        <source type="image/webp" srcset="assets/images/resized/p-34086221.webp">
+        <img class="project-image" src="assets/images/resized/p-34086221.jpg" alt="Friends Call project preview" width="1600" height="1062" loading="lazy" decoding="async">
+      </picture>
       <div class="project-content">
         <span class="project-label">Live product</span>
         <h3 class="project-title">Friends Call</h3>
         <p class="project-desc">A customer-facing web experience I built to showcase product flow, user navigation, and service-first design principles.</p>
         <div class="project-links">
-          <a href="https://friends-call.vercel.app/" target="_blank">Visit Live</a>
+          <a href="https://friends-call.vercel.app/" target="_blank" rel="noopener noreferrer">Visit Live ↗</a>
         </div>
       </div>
     </div>
     <div class="project-card">
-      <img class="project-image" src="https://images.pexels.com/photos/7108759/pexels-photo-7108759.jpeg" alt="Veea project preview">
+      <picture>
+        <source type="image/webp" srcset="assets/images/resized/p-7108759.webp">
+        <img class="project-image" src="assets/images/resized/p-7108759.jpg" alt="Veea project preview" width="1600" height="1066" loading="lazy" decoding="async">
+      </picture>
       <div class="project-content">
         <span class="project-label">Web build</span>
         <h3 class="project-title">Veea</h3>
         <p class="project-desc">A polished portfolio site I built with modern UX and fast deployment, demonstrating digital experience design and product direction.</p>
         <div class="project-links">
-          <a href="https://veea.vercel.app/" target="_blank">Visit Live</a>
+          <a href="https://veea.vercel.app/" target="_blank" rel="noopener noreferrer">Visit Live ↗</a>
         </div>
       </div>
     </div>
     <div class="project-card">
-      <img class="project-image" src="https://blog.genially.com/wp-content/uploads/2023/06/student-portfolio-header.png" alt="Next Level DW web project preview">
+      <picture>
+        <source type="image/webp" srcset="assets/images/resized/genially-student-portfolio-header.webp">
+        <img class="project-image" src="assets/images/resized/genially-student-portfolio-header.jpg" alt="Next Level DW web project preview" width="950" height="800" loading="lazy" decoding="async">
+      </picture>
       <div class="project-content">
         <span class="project-label">Business site</span>
         <h3 class="project-title">Next Level DW</h3>
         <p class="project-desc">Collaborative frontend design and product upload support for a high-performance retail distribution brand, improving how customers discover solutions.</p>
         <div class="project-links">
-          <a href="https://www.nextleveldw.com/" target="_blank">Visit Live</a>
+          <a href="https://www.nextleveldw.com/" target="_blank" rel="noopener noreferrer">Visit Live ↗</a>
         </div>
       </div>
     </div>
-    <div class="project-card fade-up delay-4">
-      <img class="project-image" src="https://images.pexels.com/photos/577210/pexels-photo-577210.jpeg" alt="Google Sheets automation project">
+    <div class="project-card">
+      <picture>
+        <source type="image/webp" srcset="assets/images/resized/p-577210.webp">
+        <img class="project-image" src="assets/images/resized/p-577210.jpg" alt="Google Sheets automation project" width="1600" height="1061" loading="lazy" decoding="async">
+      </picture>
       <div class="project-content">
         <span class="project-label">Automation</span>
         <h3 class="project-title">Google Sheets Scheduling</h3>
         <p class="project-desc">Automated scheduling and task workflows using Google Sheets and Apps Script to reduce manual updates and streamline calendar planning.</p>
         <div class="project-links">
-          <a href="https://docs.google.com/spreadsheets/d/1s8R5To3idiTE_RoWR6BwI91UGGsr7t918lmScYm3VI0/edit?usp=sharing" target="_blank">View Project</a>
+          <a href="https://docs.google.com/spreadsheets/d/1s8R5To3idiTE_RoWR6BwI91UGGsr7t918lmScYm3VI0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">View Project ↗</a>
         </div>
       </div>
     </div>
-    <div class="project-card fade-up delay-5">
-      <img class="project-image" src="https://images.pexels.com/photos/34086221/pexels-photo-34086221.jpeg" alt="Technical writing showcase">
+    <div class="project-card">
+      <picture>
+        <source type="image/webp" srcset="assets/images/resized/technical-writing.webp">
+        <img class="project-image" src="assets/images/resized/technical-writing.jpg" alt="Technical writing showcase" width="1376" height="768" loading="lazy" decoding="async">
+      </picture>
       <div class="project-content">
         <span class="project-label">Content & writing</span>
         <h3 class="project-title">OpenForum Technical Writing</h3>
-        <p class="project-desc">Technical writing and editorial content that communicates ideas clearly, professionally, and with an operations mindset.</p>
+        <p class="project-desc">Technical writing and editorial content exploring data operations, automated workflows, and system architectures with an engineering mindset.</p>
         <div class="project-links">
-          <a href="https://open.forem.com/kelvin_vosky_dc39384ebad2" target="_blank">View Writing</a>
+          <a href="https://open.forem.com/kelvin_vosky_dc39384ebad2" target="_blank" rel="noopener noreferrer">View Writing ↗</a>
         </div>
       </div>
     </div>
@@ -289,7 +321,10 @@
   <div class="case-study-grid">
     <div class="case-study-panel">
       <div class="case-study-hero">
-        <img src="https://blog.genially.com/wp-content/uploads/2023/06/student-portfolio-header.png" alt="Next Level DW case study image">
+        <picture>
+          <source type="image/webp" srcset="assets/images/resized/genially-student-portfolio-header.webp">
+          <img src="assets/images/resized/genially-student-portfolio-header.jpg" alt="Next Level DW case study image" width="1200" height="628">
+        </picture>
       </div>
       <div class="case-study-content">
         <span class="case-study-pill">Retail operations</span>
@@ -300,7 +335,7 @@
           <li>Aligned product presentation with user needs so site visitors can discover solutions more clearly.</li>
         </ul>
         <div class="case-study-actions">
-          <a href="https://www.nextleveldw.com/" target="_blank">View Live Site</a>
+          <a href="https://www.nextleveldw.com/" target="_blank" rel="noopener noreferrer">View Live Site</a>
           <a href="mailto:Kelvinvosky2@gmail.com">Discuss a similar project</a>
         </div>
       </div>
@@ -310,8 +345,8 @@
       <div class="project-content" style="background: #fff8e5; border: 1px solid var(--border); border-radius: 20px; padding: 1.75rem;">
         <p class="project-desc">This project is a strong example of how I blend operations, automation, and digital product support. It shows how I take a business need and turn it into a measurable, workflow-driven outcome.</p>
         <div class="project-links" style="margin-top: 1.5rem; gap: 1rem;">
-          <a href="https://friends-call.vercel.app/" target="_blank">Other work</a>
-          <a href="https://open.forem.com/kelvin_vosky_dc39384ebad2" target="_blank">Writing samples</a>
+          <a href="https://friends-call.vercel.app/" target="_blank" rel="noopener noreferrer">Other work</a>
+          <a href="https://open.forem.com/kelvin_vosky_dc39384ebad2" target="_blank" rel="noopener noreferrer">Writing samples</a>
         </div>
       </div>
     </div>
@@ -323,24 +358,33 @@
   <p class="section-label">What I Offer</p>
   <h2 class="section-title">World-class support for modern work</h2>
   <div class="services-grid">
-    <div class="service-card fade-up delay-1">
-      <img class="service-image" src="https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg" alt="Automation workflow image">
+    <div class="service-card">
+      <picture>
+        <source type="image/webp" srcset="assets/images/resized/p-8386434.webp">
+        <img class="service-image" src="assets/images/resized/p-8386434.jpg" alt="AI & Automation Systems" width="1600" height="1066" loading="lazy" decoding="async">
+      </picture>
       <div class="service-content">
-        <p class="service-title">AI & Automation Systems</p>
-        <p class="service-desc">Designing automated workflows, intelligent scheduling, and App Script solutions that keep processes moving with less manual effort.</p>
+        <h3 class="service-title">AI & Automation Systems</h3>
+        <p class="service-desc">Designing automated workflows, intelligent scheduling, and Apps Script solutions that keep processes moving with less manual effort.</p>
       </div>
     </div>
-    <div class="service-card fade-up delay-2">
-      <img class="service-image" src="https://images.pexels.com/photos/17485353/pexels-photo-17485353.jpeg" alt="Virtual assistant workflow image">
+    <div class="service-card">
+      <picture>
+        <source type="image/webp" srcset="assets/images/resized/p-17485353.webp">
+        <img class="service-image" src="assets/images/resized/p-17485353.jpg" alt="Virtual Assistant Services" width="1600" height="1066" loading="lazy" decoding="async">
+      </picture>
       <div class="service-content">
-        <p class="service-title">Virtual Assistant Services</p>
+        <h3 class="service-title">Virtual Assistant Services</h3>
         <p class="service-desc">Providing executive support, calendar coordination, content tracking, and task orchestration to keep teams aligned and productive.</p>
       </div>
     </div>
-    <div class="service-card fade-up delay-3">
-      <img class="service-image" src="https://images.pexels.com/photos/577210/pexels-photo-577210.jpeg" alt="Data and reporting image">
+    <div class="service-card">
+      <picture>
+        <source type="image/webp" srcset="assets/images/resized/p-577210.webp">
+        <img class="service-image" src="assets/images/resized/p-577210.jpg" alt="Data Reporting & Dashboards" width="1600" height="1061" loading="lazy" decoding="async">
+      </picture>
       <div class="service-content">
-        <p class="service-title">Data Reporting & Dashboards</p>
+        <h3 class="service-title">Data Reporting & Dashboards</h3>
         <p class="service-desc">Building clear analytics dashboards and reports that turn raw numbers into simple decisions and measurable improvements.</p>
       </div>
     </div>
@@ -424,8 +468,7 @@
   <div class="edu-grid">
     <div class="edu-card">
       <p class="edu-card-label">Degree</p>
-      <p class="edu-card-title">Bachelor of Science<br>in Applied Mathematics</p>
-      <p class="edu-card-sub">Moi University, Kenya</p>
+      <p class="edu-card-title">Bachelor of Science in Applied Mathematics — Moi University, Kenya</p>
     </div>
     <div class="edu-card">
       <p class="edu-card-label">Certifications & Professional Development</p>
@@ -448,7 +491,7 @@
   <p class="contact-sub">Based in Nairobi · Available for remote or local opportunities</p>
   <div class="contact-links">
     <a href="tel:+254703920254" class="btn btn-outline">+254 703 920 254</a>
-    <a href="https://linkedin.com/in/kelvin-odhiambo-995b44144" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+    <a href="https://linkedin.com/in/kelvin-odhiambo-995b44144" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn ↗</a>
     <a href="mailto:Kelvinvosky2@gmail.com" class="btn btn-primary">Send Email →</a>
   </div>
 </section>
@@ -459,7 +502,13 @@
   <p>Built with purpose · Nairobi, Kenya · <span>KO</span></p>
 </footer>
 
-<a href="https://wa.me/254703920254?text=Hi%20Kelvin%2C%20I%27d%20like%20to%20connect" class="whatsapp-float" target="_blank" rel="noreferrer noopener" aria-label="Chat on WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display: inline; margin-right: 0.35rem;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.768.967-.94 1.165-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a6.963 6.963 0 00-6.936 6.937c0 1.527.382 3.032 1.109 4.363l-1.18 4.32 4.412-1.157c1.29.72 2.757 1.1 4.296 1.1h.004A6.966 6.966 0 0012 5.979a6.964 6.964 0 00-.051-13.401z"/></svg> WhatsApp</a>
+<a href="https://wa.me/254703920254?text=Hi%20Kelvin%2C%20I%27d%20like%20to%20connect" class="whatsapp-float" target="_blank" rel="noreferrer noopener" aria-label="Chat on WhatsApp">
+  <picture>
+    <source type="image/webp" srcset="assets/images/whatsapp-logo.webp">
+    <img src="assets/images/whatsapp-logo.png" alt="WhatsApp" class="whatsapp-icon-img" width="26" height="26">
+  </picture>
+  <span class="whatsapp-text">WhatsApp</span>
+</a>
   <script src="script.js" defer></script>
 </html>
 

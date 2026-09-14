@@ -4,15 +4,15 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
-  initProjectFilters();
   initScrollspy();
+  initMobileNav();
 });
 
 /**
  * Update header styling on window scroll
  */
 function initHeaderScroll() {
-  const header = document.querySelector('header');
+  const header = document.querySelector('nav');
   if (!header) return;
 
   window.addEventListener('scroll', () => {
@@ -25,42 +25,41 @@ function initHeaderScroll() {
 }
 
 /**
- * Filter projects by category tab
+ * Mobile nav toggle
  */
-function initProjectFilters() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
+function initMobileNav() {
+  const nav = document.querySelector('nav');
+  const toggle = document.querySelector('.nav-toggle');
+  if (!nav || !toggle) return;
 
-  if (!filterBtns.length || !projectCards.length) return;
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    nav.classList.toggle('nav-open');
+  });
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Remove active class from all buttons
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  // Close menu when a nav link is clicked
+  const links = nav.querySelectorAll('.nav-links a');
+  links.forEach(l => l.addEventListener('click', () => {
+    nav.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
 
-      const filterValue = btn.getAttribute('data-filter');
+  document.addEventListener('click', (event) => {
+    if (!nav.classList.contains('nav-open')) return;
+    if (nav.contains(event.target)) return;
+    nav.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  });
 
-      projectCards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
-
-        if (filterValue === 'all' || filterValue === cardCategory) {
-          card.style.display = 'flex';
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(10px)';
-          setTimeout(() => {
-            if (btn.getAttribute('data-filter') !== 'all' && btn.getAttribute('data-filter') !== cardCategory) {
-              card.style.display = 'none';
-            }
-          }, 200);
-        }
-      });
-    });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav.classList.contains('nav-open')) {
+      nav.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
   });
 }
+
 
 /**
  * Highlight active navigation item based on current viewport scroll position
